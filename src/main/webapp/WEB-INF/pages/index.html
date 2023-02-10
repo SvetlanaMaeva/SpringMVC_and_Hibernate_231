@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <colgroup>
+        <col span="3" style="padding: 20px; width: 100px">
+    </colgroup>
+    <thead>
+    <tr style="background:#db71c9">
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user: ${users}">
+        <td th:text="${user.firstName}"/>
+        <td th:text="${user.lastName}"/>
+        <td th:text="${user.email}"/>
+        <td>
+            <form th:method="GET" th:action="@{/{id}/update(id=${user.getId()})}">
+                <input type="submit" style="color: #db71c9" th:value="Изменить">
+            </form>
+        </td>
+        <td>
+            <form th:method="DELETE" th:action="@{/{id}/delete(id=${user.getId()})}">
+                <input type="submit" style="color: #db71c9" th:value="Удалить">
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<input type="button" style="color: #db71c9" value="Добавить пользователя" onclick="window.location.href = 'add'"/>
+</body>
+</html>
